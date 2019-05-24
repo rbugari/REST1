@@ -1,0 +1,24 @@
+[
+    {
+        "idTransac":1,
+        "idProvider": 1,
+        "idCustomer": 1,
+        "URLFile":"dddddddd",
+        "code" : "OxcccSSS"
+    },
+    {
+        "idTransac":2,
+        "idProvider": 2,
+        "idCustomer": 2,
+        "URL":"rrrrrrrrrrr",
+        "code" : "OxcfdffdfdccSSS"
+    },
+    {
+        "idTransac":3,
+        "idProvider": 3,
+        "idCustomer": 3,
+        "URL":"rrrrrrrrrrr",
+        "code" : "OxcfdffdfdccSSS"
+    }
+
+]
