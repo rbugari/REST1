@@ -19,6 +19,13 @@
         "idCustomer": 3,
         "URL":"rrrrrrrrrrr",
         "code" : "OxcfdffdfdccSSS"
+    },
+    {
+        "idTransac":4,
+        "idProvider": 1,
+        "idCustomer": 1,
+        "URLFile":"dddddddd",
+        "code" : "OxcccSSS"
     }
 
 ]
