@@ -13,7 +13,8 @@ app.use(express.json())
 // routes
 app.use(require('./routes/index'))
 app.use('/api/allDocs',require('./routes/allDocs'))
-app.use('/api/getDocumento',require('./routes/GetDoc'))
+app.use('/api/getRemito',require('./routes/getDoc'))
+app.use('/api/addRemito',require('./routes/addDoc.js'))
 
 
 app.listen(app.get('port'), () => {

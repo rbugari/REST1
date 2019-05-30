@@ -2,7 +2,7 @@ const { Router } = require('express')
 const router = Router()
 
 router.get('/',(req,res) => {
-    res.json({"Tile" : "Hello"})
+    res.json({"Tile" : "API demo test of Remitos"})
 })
 
 /* router.get('/GetDoc',(req,res) => {

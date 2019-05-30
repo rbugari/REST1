@@ -1,30 +1,30 @@
 [
     {
-        "idTransac":1,
+        "idTransac": 1,
         "idProvider": 1,
         "idCustomer": 1,
-        "URLFile":"dddddddd",
-        "code" : "OxcccSSS"
+        "URLFile":"https://s3.us-east-2.amazonaws.com/cocaimagenes/Argentina/CocaCola/237+CC+Sabor+Original+MB_baja.png",
+        "code" : "b9801dee251bd52031740a5c0097a96eb5e4f3875f07097e99960a5b10be2f55"
     },
     {
-        "idTransac":2,
+        "idTransac": 2,
         "idProvider": 2,
         "idCustomer": 2,
-        "URL":"rrrrrrrrrrr",
-        "code" : "OxcfdffdfdccSSS"
+        "URL":"https://s3.us-east-2.amazonaws.com/cocaimagenes/Argentina/CocaCola/237+ml+CC+Light+FR_baja.png",
+        "code" : "bca5f2e4f5cf8638bc17933e379b870fe4fe2d81729fd5a3b940a0253ff527e0"
     },
     {
-        "idTransac":3,
+        "idTransac": 3,
         "idProvider": 3,
         "idCustomer": 3,
-        "URL":"rrrrrrrrrrr",
-        "code" : "OxcfdffdfdccSSS"
+        "URL":"https://s3.us-east-2.amazonaws.com/cocaimagenes/Argentina/CocaCola/CC+1%2C5+reg+retornable.jpg",
+        "code" : "bbd77ea2f5bcfd5bdf0d90206cac08786c566505c239cc35805cf1aedc49c1e0"
     },
     {
-        "idTransac":4,
+        "idTransac": 4,
         "idProvider": 1,
         "idCustomer": 1,
-        "URLFile":"dddddddd",
+        "URLFile":"cualquiera q definas",
         "code" : "OxcccSSS"
     }
 
