@@ -6,15 +6,15 @@ const { Router } = require('express')
 const router = Router()
 const _ = require('underscore')
 
-const docs=require('../sample.json')
+const Contents=require('../sample.json')
 //console.log(docs)
 
 router.get('/',(req,res) => {
-    res.json(docs)
+    res.json(Contents)
 })
 
 
-router.delete('/:id', (req,res) => {
+/* router.delete('/:id', (req,res) => {
     const { id } = req.params
     console.log(id)
     _.each(docs, (doc, i) => {
@@ -27,6 +27,6 @@ router.delete('/:id', (req,res) => {
     })
     //res.send(docs)
   
-})
+}) */
 
 module.exports = router
