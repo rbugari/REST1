@@ -6,27 +6,19 @@ const { Router } = require('express')
 const router = Router()
 const _ = require('underscore')
 
-const Contents=require('../sample.json')
+const ensureToken = require("./helper")
+
+//const Contents=require('../sample.json')
 //console.log(docs)
 
-router.get('/',(req,res) => {
-    res.json(Contents)
-})
+// Models
+const Contentenido = require('../models/Content.js')
 
 
-/* router.delete('/:id', (req,res) => {
-    const { id } = req.params
-    console.log(id)
-    _.each(docs, (doc, i) => {
-        // console.log(doc.idTransac)
-        if( doc.idTransac == id ){
-            console.log("encontrado")
-            docs.splice( i ,1)
-            //res.send('deleted')
-        }
-    })
-    //res.send(docs)
-  
-}) */
+router.get('/',ensureToken,async (req,res) => {
+    const Cont = await Contentenido.find();
+    console.log("Encontrado",Cont)
+    res.send(Cont)
+  })
 
 module.exports = router

@@ -21,19 +21,34 @@ const { Router } = require('express')
 const router = Router()
 const _ = require('underscore')
 
-const docs=require('../sample.json')
+// Models
+const Contentenido = require('../models/Content.js')
+
+//const docs=require('../sample.json')
 //console.log(docs)
+const ensureToken = require("./helper")
 
-
-router.post('/',(req,res) => {
+router.post('/', ensureToken,async(req,res) => {
     console.log(req.body)
-    const key =req.body.key
+
+    const key = req.body.key
     console.log ('clave a ingresar : ', key)
     // si la clave no es null
     if (key){
+
+        //const NewContent = {...req.body}
+        let  { key,type,data,hash,tags } = req.body;
+        //docs.push(NewContent)
         
-        const NewContent = {...req.body}
-        docs.push(NewContent)
+        data = JSON.stringify(data)
+        tags = JSON.stringify(tags)
+
+        console.log("Data:   ", key,type,data,hash,tags)
+        
+        const newContent2 = new Contentenido({key,type,data,hash,tags});
+        console.log("New 2:  ",newContent2)
+        await newContent2.save();
+
         res.send("insertado Correctamente")
     }else{
         res.send("Wrong Request key: ", key)

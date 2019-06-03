@@ -1,6 +1,6 @@
 [
-    {  
-        "key":1,
+   {  
+        "key":"JEGt1f3fbCUIiuqxejf3agZ3pc02JV9Pq8Av",
         "type":"1",
         "data":{  
            "idTransac":1,
@@ -16,7 +16,7 @@
         ]
     },
     {  
-        "key":2,
+        "key":"kDqhsVRFyTNGwnNBQ5NUbdlt2pB7vjVTEB5R",
         "type":"1",
         "data":{  
            "idTransac":2,
@@ -30,19 +30,14 @@
         ]
     },
     {  
-        "key":3,
+        "key":"pbja29XVXMl21Js4CrkQvV42K66K9MogLBpX",
         "type":"1",
-        "data":{  
-           "idTransac":2,
-           "idProvider":2,
-           "idCustomer":2,
-           "URLFile":"https://s3.us-east-2.amazonaws.com/cocaimagenes/Argentina/CocaCola/237+ml+CC+Light+FR_baja.png"
-        },
+        "data":"{'idTransac':2,'idProvider':2,'idCustomer':2,'URLFile':'https://s3.us-east-2.amazonaws.com/cocaimagenes/Argentina/CocaCola/237+ml+CC+Light+FR_baja.png'}",
         "hash":"b9801dee251bd52031740a5c0097a96eb5e4f3875f07097e99960a5b10be2f55",
         "tags":[]
     },
     {  
-        "key":4,
+        "key":"jMbc7mKQCwjzk1EaB2ajXxKFW2AR2q5NN058",
         "type":"1",
         "data":{  
            "idTransac":2,

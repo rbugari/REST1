@@ -6,19 +6,21 @@ const { Router } = require("express");
 const router = Router();
 const _ = require("underscore");
 
-const contents = require("../sample.json");
+const ensureToken = require("./helper")
+//const contents = require("../sample.json");
 //console.log(docs)
 
-router.get('/:key', (req,res) => {
+// Models
+const Contentenido = require('../models/Content.js')
+
+
+router.get('/:key',ensureToken, async (req,res) => {
   const { key } = req.params
-  console.log('el id solicitado : ',key)
-  _.each(contents, (content, i) => {
-      if( content.key == key ){
-        console.log("clave encontrada: ",content.key)
-          res.send(content)
-          return
-      }
-  })
+  console.log('el key solicitado : ',key)
+  // busqueda en la Base
+  const Cont = await Contentenido.find({key});
+  console.log("Encontrado",Cont)
+  res.send(Cont)
 })
 
  
