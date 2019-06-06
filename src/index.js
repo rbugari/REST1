@@ -4,10 +4,16 @@ const morgan = require('morgan')
 
 // Inizialization
 const app = express()
-require('./database');
+const dbconnect = require('./database');
 
 //settings
 app.set('port', process.env.PORT || 3000)
+//app.set('mongodb','mongodb://localhost/karghoContent')
+app.set('mongodb','mongodb+srv://admin:A1111rfb@cluster0-ajh5c.mongodb.net/kargho?retryWrites=true&w=majority')
+
+const db = app.get('mongodb')
+//conect db
+dbconnect (db)
 
 //middlewares
 app.use(morgan('dev'))
@@ -20,6 +26,8 @@ app.use(express.json())
 app.use(require('./routes/index'))
 app.use('/api/login',require('./routes/login'))
 app.use('/api/login/proctected',require('./routes/login'))
+
+// rutas de uso verficadas con Token
 app.use('/api/allContents',require('./routes/allContents'))
 app.use('/api/getContent',require('./routes/getContent'))
 app.use('/api/addContent',require('./routes/addContent'))

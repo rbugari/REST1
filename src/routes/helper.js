@@ -9,6 +9,7 @@ function ensureToken(req,res,next){
     }else{
         res.sendStatus(403)
     }
+    return
 }
-
 module.exports = ensureToken
+

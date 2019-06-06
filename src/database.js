@@ -1,9 +1,17 @@
 const mongoose = require('mongoose');
 
-mongoose.set('useFindAndModify', false);
-mongoose.connect('mongodb://localhost/karghoContent', {
-  useCreateIndex: true,
-  useNewUrlParser: true
-})
-  .then(db => console.log('DB is connected'))
-  .catch(err => console.error(err));
+function dbconnect (db ){
+  mongoose.set('useFindAndModify', false);
+
+  console.log ('Mongo DB : ',db)
+  mongoose.connect(db, {
+    useCreateIndex: true,
+    useNewUrlParser: true
+  })
+    .then(db => console.log('DB is connected'))
+    .catch(err => console.error(err));
+}
+
+
+
+module.exports = dbconnect

@@ -20,6 +20,7 @@ Permite ingresar un JSON con los datos del remito deberia tener el siguiente for
 const { Router } = require('express')
 const router = Router()
 const _ = require('underscore')
+const bl = require('./blockAdd')
 
 // Models
 const Contentenido = require('../models/Content.js')
@@ -35,19 +36,18 @@ router.post('/', ensureToken,async(req,res) => {
     console.log ('clave a ingresar : ', key)
     // si la clave no es null
     if (key){
-
-        //const NewContent = {...req.body}
         let  { key,type,data,hash,tags } = req.body;
-        //docs.push(NewContent)
-        
         data = JSON.stringify(data)
         tags = JSON.stringify(tags)
 
         console.log("Data:   ", key,type,data,hash,tags)
-        
+ 
         const newContent2 = new Contentenido({key,type,data,hash,tags});
         console.log("New 2:  ",newContent2)
-        await newContent2.save();
+        await newContent2.save().then(console.log('saved'));
+
+        console.log('vamos al BL')
+        await bl(key,type,data,hash,tags).then(console.log('ok'))
 
         res.send("insertado Correctamente")
     }else{
