@@ -5,6 +5,9 @@ Permite traer un contenido definido de con el key como como parametro
 const { Router } = require("express");
 const router = Router();
 const _ = require("underscore");
+const GetBlockchain = require('./blockGet')
+const xconfig =require('../config.json')
+const config = xconfig[0]
 
 const ensureToken = require("./helper")
 //const contents = require("../sample.json");
@@ -17,9 +20,15 @@ const Contentenido = require('../models/Content.js')
 router.get('/:key',ensureToken, async (req,res) => {
   const { key } = req.params
   console.log('el key solicitado : ',key)
+  let Cont
   // busqueda en la Base
-  const Cont = await Contentenido.find({key});
-  console.log("Encontrado",Cont)
+  if (config.useBL){
+     Cont = await GetBlockchain(key)
+  } else {if (config.useDB){
+     Cont = await Contentenido.find({key});
+    }
+  }
+  console.log("Encontrado", Cont)
   res.send(Cont)
 })
 

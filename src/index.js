@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 
 
+
 // Inizialization
 const app = express()
 const dbconnect = require('./database');
@@ -12,7 +13,7 @@ app.set('port', process.env.PORT || 3000)
 app.set('mongodb','mongodb+srv://admin:A1111rfb@cluster0-ajh5c.mongodb.net/kargho?retryWrites=true&w=majority')
 
 const db = app.get('mongodb')
-//conect db
+//funtion to connect  db
 dbconnect (db)
 
 //middlewares

@@ -21,7 +21,8 @@ const { Router } = require('express')
 const router = Router()
 const _ = require('underscore')
 const bl = require('./blockAdd')
-
+const xconfig =require('../config.json')
+const config = xconfig[0]
 // Models
 const Contentenido = require('../models/Content.js')
 
@@ -29,31 +30,48 @@ const Contentenido = require('../models/Content.js')
 //console.log(docs)
 const ensureToken = require("./helper")
 
+
 router.post('/', ensureToken,async(req,res) => {
     console.log(req.body)
 
     const key = req.body.key
     console.log ('clave a ingresar : ', key)
+    var msgtxt = ''
     // si la clave no es null
-    if (key){
-        let  { key,type,data,hash,tags } = req.body;
-        data = JSON.stringify(data)
-        tags = JSON.stringify(tags)
+    try{
+        if (key){
+            let  { key,type,data,hash,tags } = req.body;
+            data = JSON.stringify(data)
+            tags = JSON.stringify(tags)
 
-        console.log("Data:   ", key,type,data,hash,tags)
- 
-        const newContent2 = new Contentenido({key,type,data,hash,tags});
-        console.log("New 2:  ",newContent2)
-        await newContent2.save().then(console.log('saved'));
+            console.log("Data:   ", key,type,data,hash,tags)
 
-        console.log('vamos al BL')
-        await bl(key,type,data,hash,tags).then(console.log('ok'))
+            if (config.useBL){
+                console.log('vamos al BL')
+                await bl(key,type,data,hash,tags).then(console.log('ok'))
+        
+                msgtxt +=" insertado Correctamente BL "
+            }else{
+                if (config.useDB){
+                    const newContent2 = new Contentenido({key,type,data,hash,tags});
+                    
+                    await newContent2.save().then(console.log('saved'));
+                    msgtxt +=" insertado Correctamente BL "
+                    console.log("insertado en DB  ",newContent2)
+  
+                }    
+     
+            }
+            
 
-        res.send("insertado Correctamente")
-    }else{
-        res.send("Wrong Request key: ", key)
+        }else{
+            msgtxt += 'Wrong Request key: '+ key
+            
+        }
+    }catch (error){
+    console.log (error) 
     }
-    
+    res.send({msg: msgtxt})
 })
 
 module.exports = router

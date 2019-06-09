@@ -24,10 +24,14 @@ router.get('/protected',ensureToken,(req,res) => {
 router.post('/', (req,res) => {
   const user_name = req.header('userName')
   const user_password =  req.header('userPassword')
+  // validar usuario.
+  if (user_name != "kargho"){
+      res.send ({"msg":"usuario no autorizado a trabajar"})
+  }
   const user = { user_name,user_password}
   const token = jwt.sign({user},'my_secret_key') 
   console.log('el id solicitado : ',user)
-  res.send(token)
+  res.send({"token":token})
 })
 
  

@@ -1,12 +1,11 @@
-
-async function  AddBlockchain(key,type,xdata,hash,tag) {
+async function  GetBlockchain(key) {
     const Tx = require('ethereumjs-tx')
     const Web3 = require('web3')
     const config =require('../config.json')
 
     const web3 = new Web3(config.web3_path)
 
-    console.log(config)
+    //console.log(config)
 
     const account1 =config.eth_account
     //const account2 = '0x24C08c49A4280C5E60123713e7890CA600689421'
@@ -14,9 +13,7 @@ async function  AddBlockchain(key,type,xdata,hash,tag) {
 
     const privkey1 = config.eth_privkey
     const priv1 = Buffer.from(privkey1,'hex');
-
-
-
+    
     const docContractABI = [
         {
             "constant": false,
@@ -205,52 +202,29 @@ async function  AddBlockchain(key,type,xdata,hash,tag) {
         }
     ]
 
-    const contractAdress = config.eth_contact
-
+ 
+    //const contractAdress = config.eth_contact
+    const contractAdress = '0xab0f3d261b200a4a4583f960485ac79b50e8f2b7'
     var docContract = new web3.eth.Contract(docContractABI, contractAdress)
 
-    //console.log (key,"--", type,"--",xdata,"--",hash,"--",tag)
-
-    //const data = docContract.methods.NewDocTest(125).encodeABI()
-    const data = docContract.methods.NewContent(
-        key,
-        type,
-        xdata,
-        hash,
-        tag
-        ).encodeABI()
-
-    web3.eth.getTransactionCount(account1, (err, txCount) => {
-        
-        console.log ('Error: ',err,'  -- Cant de Transact: ',txCount);
-
-        // Build the transaction
-        const txObject = {
-            nonce: web3.utils.toHex(txCount) ,
-            gasLimit:web3.utils.toHex(3000000) ,
-            gasPrice:web3.utils.toHex(web3.utils.toWei('10','gwei')) ,
-            to:contractAdress,
-            data:data 
-        }
-        //console.log (txObject)
-
-        // sign the transaction
-        const tx = new Tx(txObject)
-        tx.sign(priv1)
-
-        const serializedTransaction = tx.serialize()
-        const raw = '0x' + serializedTransaction.toString('hex')
-
-        console.log('raw', raw)
-
-        // Bradcast transaction
-        web3.eth.sendSignedTransaction (raw, (err,txHash) => {
-            console.log('Error:',err,'txHash',txHash)
-        })
+    
+    docContract.methods.GetContent(key).call()
+    .then(function (res)
+    {
+        const Content = 
+        {
+            "key":key,
+            "xtype" : res._xtype,
+            "data" : res._data,
+            "hash":res._hash,
+            "tags":res.tags
+            }
+        console.log (Content)
+        return Content
     })
-    return 1
 
 }
+module.exports = GetBlockchain
 
-module.exports = AddBlockchain
+
 
